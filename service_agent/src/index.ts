@@ -86,7 +86,7 @@ export const generateRequirementsFromConfig = ({
 })
 
 export const init = async () => {
-  const passwordStore = new FilePasswordStore(__dirname + '/../password.txt')
+//  const passwordStore = new FilePasswordStore(__dirname + '/../password.txt')
   const connection = await typeorm.createConnection(typeormConfig)
   const storage = new JolocomTypeormStorage(connection)
 
@@ -94,11 +94,11 @@ export const init = async () => {
     storage,
   })
 
-  const publicHostport = process.env.SERVICE_HOSTPORT || '192.168.178.36:9000'
-  const publicPort = publicHostport.split(':')[1]
-  const listenPort = process.env.SERVICE_LISTEN_PORT || publicPort || 9000;
+  const publicHostport = '52.66.202.135'
+//  const publicPort = publicHostport.split(':')[1]
+  const listenPort = 9000;
 
-  const jolo = await sdk.initAgent({ passwordStore: passwordStore })
+  const jolo = await sdk.loadAgentFromMnemonic('mistake ordinary flush whisper crumble nerve asthma system science relax object ski')
   const idw = jolo.identityWallet
 
   const server = new hapi.Server({
